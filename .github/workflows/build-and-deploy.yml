@@ -8,8 +8,8 @@ on:
 jobs:
   scan-with-trivy:
     uses: tkhom3/gha-workflows/.github/workflows/scan-with-trivy.yml@main
-  scan-with-codacy:
-    uses: tkhom3/gha-workflows/.github/workflows/scan-with-codacy.yml@main
+#   scan-with-codacy:
+#     uses: tkhom3/gha-workflows/.github/workflows/scan-with-codacy.yml@main
   build-and-push-image:
     uses: tkhom3/gha-workflows/.github/workflows/build-and-push-image.yml@main
     secrets: inherit
