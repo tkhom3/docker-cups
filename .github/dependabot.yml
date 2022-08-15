@@ -1,0 +1,30 @@
+# Basic dependabot.yml file with
+# minimum configuration for two package managers
+
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "release/patch"
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    # Look for a `Dockerfile` in the `root` directory
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "release/patch"
+      
+  # Maintain dependencies for npm
+  - package-ecosystem: "pip"
+    # Look for a `requirements.txt` in the `root` directory
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "release/patch"
