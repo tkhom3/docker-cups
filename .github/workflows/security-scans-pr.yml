@@ -8,5 +8,5 @@ on:
 jobs:
   scan-with-trivy:
     uses: tkhom3/gha-workflows/.github/workflows/scan-with-trivy-pr.yml@main
-  scan-with-codacy:
-    uses: tkhom3/gha-workflows/.github/workflows/scan-with-codacy-pr.yml@main
+#   scan-with-codacy:
+#     uses: tkhom3/gha-workflows/.github/workflows/scan-with-codacy-pr.yml@main
