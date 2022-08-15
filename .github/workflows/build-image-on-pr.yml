@@ -1,0 +1,8 @@
+name: Build Image on PR
+
+on:
+  pull_request:
+    
+jobs:
+  build-image:
+    uses: tkhom3/gha-workflows/.github/workflows/build-image-pr.yml@main
