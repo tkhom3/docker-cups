@@ -1,0 +1,14 @@
+---
+engines:
+  Hadolint:
+    enabled: true
+  markdownlint:
+    enabled: true
+  duplication:
+    enabled: true
+  pylint:
+    enabled: true
+    python_version: 3
+
+exclude_paths:
+  - "tests/**"
