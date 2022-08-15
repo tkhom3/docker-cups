@@ -1,0 +1,8 @@
+name: Pull Request Labels
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+
+jobs:
+  check-for-label:
+    uses: tkhom3/gha-workflows/.github/workflows/require-labels-pr.yml@main
