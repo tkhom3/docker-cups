@@ -1,25 +1,28 @@
 FROM alpine:3.16.2
 
-# Install the packages we need. Avahi will be included
+# Add edge branch for cups-pdf
 RUN echo -e "http://nl.alpinelinux.org/alpine/edge/testing\nhttp://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories 
-RUN apk update \
-	&& apk add --update cups \
-	cups-libs \
-	cups-pdf \
-	cups-client \
-	cups-filters \
-	cups-dev \
-	avahi \
+
+RUN apk update && apk add --no-cache \
+	cups=2.4.2-r0 \
+	cups-dev=2.4.2-r0 \
+	cups-libs=2.4.2-r0 \
+	cups-pdf=3.0.1-r1 \
+	cups-client=2.4.2-r0 \
+	cups-filters=1.28.15-r0 \
+	avahi=0.8-r6 \
 	inotify-tools \
-	python3 \
-	python3-dev \
-	py3-pip \
-	build-base \
-	wget \
-	rsync
-RUN pip3 --no-cache-dir install --upgrade pip \
-	&& pip3 install pycups \
-	&& rm -rf /var/cache/apk/*
+	python3=3.10.6-r1 \
+	python3-dev=3.10.6-r1 \
+	py3-pip=22.1.1-r0 \
+	build-base=0.5-r3 \
+	wget=1.21.3-r1 \
+	rsync=3.2.5-r0
+
+COPY requirements.txt /
+
+RUN pip3 install -r requirements.txt && \
+    rm -rf /tmp/pip_build_root/
 
 # This will use port 631
 EXPOSE 631
@@ -29,7 +32,7 @@ VOLUME /config
 VOLUME /services
 
 # Add scripts
-ADD root /
+COPY root /
 RUN chmod +x /root/*
 
 #Run Script
@@ -44,3 +47,5 @@ RUN sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf && 
 	sed -i 's/.*enable\-dbus=.*/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf && \
 	echo "ServerAlias *" >> /etc/cups/cupsd.conf && \
 	echo "DefaultEncryption Never" >> /etc/cups/cupsd.conf
+
+HEALTHCHECK CMD curl --fail http://localhost:631 || exit 1 
