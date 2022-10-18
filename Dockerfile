@@ -12,8 +12,8 @@ RUN apk update && apk add --no-cache \
 	cups-filters=1.28.15-r0 \
 	avahi=0.8-r6 \
 	inotify-tools \
-	python3=3.10.6-r1 \
-	python3-dev=3.10.6-r1 \
+	python3=3.10.7-r0 \
+	python3-dev=3.10.7-r0 \
 	py3-pip=22.1.1-r0 \
 	build-base=0.5-r3 \
 	wget=1.21.3-r1 \
