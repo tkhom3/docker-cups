@@ -1,4 +1,4 @@
-FROM alpine:3.16.2
+FROM alpine:3.17.2
 
 # Add edge branch for cups-pdf
 RUN echo -e "http://nl.alpinelinux.org/alpine/edge/testing\nhttp://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories 
